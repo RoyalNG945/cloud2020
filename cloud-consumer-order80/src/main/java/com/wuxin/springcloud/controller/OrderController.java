@@ -30,8 +30,14 @@ public class OrderController {
     @GetMapping(value = "/consumer/payment/get/{id}")
     public CommonResult<Payment> findById(@PathVariable("id")Long id){
 
-        return restTemplate.getForObject(PAYMENT_URL+"/"+id,CommonResult.class);
+        return restTemplate.getForObject(PAYMENT_URL+"/payment/get/"+id,CommonResult.class);
     }
 
+    @GetMapping(value = "/consumer/payment/zipkin")
+    public String paymentZipkin(){
+
+        String result = restTemplate.getForObject(PAYMENT_URL+"/payment/zipkin/",String.class);
+        return result;
+    }
 
 }
